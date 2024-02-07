@@ -5,17 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="posts")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+@Entity
+@Table(name="comments")
+public class Comment {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    private String title;
-    private String description;
-    private String content;
+    private String email;
+    private String text;
+    //many comments for one post
+    @ManyToOne
+    @JoinColumn(name="post_id")
+    private Post post;
 
 }
